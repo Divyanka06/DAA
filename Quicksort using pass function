@@ -1,0 +1,55 @@
+#include<stdio.h>
+void printarray(int arr[],int size);
+int pass = 1;
+void swap(int arr[],int i ,int j){
+    int temp = arr[i];
+    arr [i] = arr [j];
+    arr [j] = temp;
+}
+    int partition(int arr[],int low,int high){
+        int pivot = arr[low];
+        int left = low+1;
+        int right = high;
+        while(1){
+            while(left<=right && arr[left]<=pivot)
+            left++;
+            while(right>=left && arr[right]>=pivot)
+            right--;
+            
+            if (left>right)
+            break;
+            
+            swap(arr,left,right);
+            }
+            swap(arr,low,right);
+            return right;
+            printf("pass %d (pivot=%d):",pass++,pivot);
+            printarray(arr,high-low+1);
+            return right;
+        }
+        void quicksort(int arr[],int low ,int high){
+            if(low<high){
+                int pivotIndex=partition(arr,low,high);
+                quicksort(arr,low,pivotIndex-1);
+                quicksort(arr,pivotIndex+1,high);
+                
+            }
+            
+        }
+        void printarray(int arr[],int size){
+            for(int i = 0;i<size;i++)
+            printf("%d ",arr[i] );
+            printf("\n");
+        }
+        
+    int main(){
+        int arr[]={10,7,8,9,1,5};
+        int n = sizeof(arr)/sizeof(arr[0]);
+        printf("Original array: ");
+        printarray(arr,n);
+        quicksort(arr,0,n-1);
+            
+        printf("sorted array: ");
+        printarray(arr,n);
+        return 0;
+    }
